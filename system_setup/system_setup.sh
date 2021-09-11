@@ -45,3 +45,33 @@ sudo apt-get install keepassxc
 # Install virtualenv
 sudo apt-get install virtualenv 
 mkdir $HOME/virtual_envs
+
+# Install curl
+sudo apt-get install curl
+
+# Install Docker
+sudo apt-get update
+sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo docker run hello-world
+
+# Install Homebrew (to install eg tfenv)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install tfenv with homebrew
+brew install tfenv
+echo ""  >> ~/.zshrc
+echo ""  >> ~/.zshrc
+echo "# Enable tfenv" >> ~/.zshrc
+echo "echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/soerenerichsen/.profile" >> ~/.zshrc
+echo "eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"" >> ~/.zshrc
+
+# Install starship shell prompt
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+echo ""  >> ~/.zshrc
+echo ""  >> ~/.zshrc
+echo "# Enable Starship prompt in Zsh shell" >> ~/.zshrc
+echo 'eval "$(starship init zsh)"' >> ~/.zshrc 
