@@ -75,3 +75,13 @@ echo ""  >> ~/.zshrc
 echo ""  >> ~/.zshrc
 echo "# Enable Starship prompt in Zsh shell" >> ~/.zshrc
 echo 'eval "$(starship init zsh)"' >> ~/.zshrc 
+
+# Install pyenv
+curl https://pyenv.run | zsh
+echo "" ~/.zshrc
+echo "#pyenv" ~/.zshrc
+echo "export PATH='$HOME/.pyenv/bin:$PATH'" ~/.zshrc
+echo "export PATH='$PYENV_ROOT/bin:$PATH'" ~/.zshrc
+echo "if command -v pyenv 1>/dev/null 2>&1; then" ~/.zshrc
+echo "  eval '$(pyenv init -)'" ~/.zshrc
+echo "fi" ~/.zshrc
