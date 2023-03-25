@@ -135,6 +135,7 @@ alias ll='ls -l -a -h'
 alias sat='source activate tensorflow'
 alias sdt='source deactivate tensorflow'
 chpwd() { ls }
+alias pycharm='sh ~/pycharm-community-2022.3.3/bin/pycharm.sh'
 
 
 # added by Anaconda3 installer
