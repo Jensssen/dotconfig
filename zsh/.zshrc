@@ -2,32 +2,37 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="ys"
 
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -39,6 +44,9 @@ ZSH_THEME="ys"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -57,22 +65,22 @@ ZSH_THEME="ys"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  web-search
-  git-extras
-  wd
-  zsh-autosuggestions
-  sudo
-)
+plugins=(  
+    git
+    web-search
+    git-extras
+    wd
+    zsh-autosuggestions
+    sudo
+    zsh-syntax-highlighting
+    )
 
 source $ZSH/oh-my-zsh.sh
-
 
 # User configuration
 
@@ -91,9 +99,6 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -103,43 +108,32 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-#Cuda Environment
-export PATH=/usr/local/cuda-9.0/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-9.0/extras/CUPTI/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-export CUDA_HOME=/usr/local/cuda-9.0
-
-
-#ROS source
-source /opt/ros/kinetic/setup.zsh
-#export PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages
-#export PYTHONPATH=$PYTHONPATH:/usr/lib/python3.5/dist-packages
-#source /home/soeren/Documents/feature_visualization/catkin_ws/devel/setup.zsh
-source /home/soeren/catkin_ws/devel/setup.zsh
-#source /home/soeren/ros_project_ws/devel/setup.zsh
-
-
-#set gradle environment variable
-export PATH=$PATH:/opt/gradle/gradle-4.9/bin
-
-#export FLIP download path 
-export PATH=$PATH:/home/soeren/Documents/feature_visualization/Quantitative_tests/Real_World_Data
-
 #key-bindings
 bindkey '^ ' autosuggest-accept # [ctrl + space] accept autosuggestion in zsh
 
 # custom shortcuts
-alias rc='roscore'
-alias ll='ls -l -a -h' 
-alias sat='source activate tensorflow'
-alias sdt='source deactivate tensorflow'
 chpwd() { ls }
+alias ll='ls -l -a -h' 
 alias pycharm='sh ~/pycharm-community-2022.3.3/bin/pycharm.sh'
-
-
-# added by Anaconda3 installer
-#export PATH="/home/soeren/anaconda3/bin:$PATH"
-
-# source fzf
+alias studio='sh ~/android-studio/bin/studio.sh'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#TFEnv
+export PATH="$HOME/.tfenv/bin:$PATH"
+# Enable Starship prompt in Zsh shell
+eval "$(starship init zsh)"
+
+#pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+# poetry
+export PATH="/home/soerenerichsen/.local/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/soerenerichsen/google-cloud-sdk/path.zsh.inc' ]; then . '/home/soerenerichsen/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/soerenerichsen/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/soerenerichsen/google-cloud-sdk/completion.zsh.inc'; fi
+
